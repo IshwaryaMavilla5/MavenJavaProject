@@ -1,0 +1,25 @@
+version: "3.9"
+
+services:
+  tomcatserver:
+    image: tomcat:9.0
+    container_name: tomcatserver
+    ports:
+      - "8086:8080"
+    volumes:
+      - ./tomcat/webapps:/usr/local/tomcat/webapps
+
+  campusapp:
+    image: yourdockerhubusername/csimage:latest
+    container_name: campusapp
+    ports:
+      - "7007:8080"
+    depends_on:
+      - tomcatserver
+docker-compose up -d
+docker ps
+Tomcat: http://localhost:8086
+
+CampusMgmtSystem App: http://localhost:7007
+stop containers 
+docker-compose down
